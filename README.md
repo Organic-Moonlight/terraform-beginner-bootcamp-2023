@@ -98,7 +98,7 @@ Need to be careful when using the Init because it will not rerun if we restart a
 https://www.gitpod.io/docs/configure/workspaces/tasks
 
 
-### WOrking Env Vars
+### Working Env Vars
 
 We can list out all Environment Variables (Env Vars) using the `env` command
 
@@ -203,13 +203,22 @@ Terraform sources their providers and modules from the Terraform Registry which 
 
  If you would like to bypass this prompt we can apply the auto approve flag eg. `terraform apply --auto-approve`
 
- ### Terraform Lock Files
+
+ #### Terraform Destory
+
+ `terraform destroy`
+ 
+ This will destroy resources. 
+
+ You can also us the auto-approve flag to skip the approve prompt eg `terraform apply --auto-approve`
+
+ #### Terraform Lock Files
 
  `.terraform.lock.hcl` contains the locked versioning for the providers or modules that should be used with this project. 
 
  The Terraform Lock File **should be commited** to your Version Control System (VSC) eg. Github
 
- ### Terraform State Files
+ #### Terraform State Files
 
  `.terraform.tfstate` contains information about the current state of your infrastructure. 
 
@@ -221,7 +230,7 @@ Terraform sources their providers and modules from the Terraform Registry which 
 
  `.terraform.tfstate.backup` is the previous state file state. 
 
- ### Terraform Directory
+ #### Terraform Directory
 
  `.terraform` directory contains binaries of terraform providers. 
 
