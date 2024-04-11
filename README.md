@@ -98,7 +98,7 @@ Need to be careful when using the Init because it will not rerun if we restart a
 https://www.gitpod.io/docs/configure/workspaces/tasks
 
 
-### WOrking Env Vars
+### Working Env Vars
 
 We can list out all Environment Variables (Env Vars) using the `env` command
 
@@ -179,7 +179,7 @@ Terraform sources their providers and modules from the Terraform Registry which 
  - **Providers** is an interface to the APIs that will allow you to create resources in terraform. 
  - **Modules** are a way to make large amount of terrafomr code modular, portable and shareable. 
 
- [Random Terrafomr Provider](https://registry.terraform.io/providers/hashicorp/random)
+ [Random Terraform Provider](https://registry.terraform.io/providers/hashicorp/random)
 
  ### Terraform Console
 
@@ -203,13 +203,22 @@ Terraform sources their providers and modules from the Terraform Registry which 
 
  If you would like to bypass this prompt we can apply the auto approve flag eg. `terraform apply --auto-approve`
 
- ### Terraform Lock Files
+
+ #### Terraform Destory
+
+ `terraform destroy`
+
+ This will destroy resources. 
+
+ You can also us the auto-approve flag to skip the approve prompt eg `terraform apply --auto-approve`
+
+ #### Terraform Lock Files
 
  `.terraform.lock.hcl` contains the locked versioning for the providers or modules that should be used with this project. 
 
  The Terraform Lock File **should be commited** to your Version Control System (VSC) eg. Github
 
- ### Terraform State Files
+ #### Terraform State Files
 
  `.terraform.tfstate` contains information about the current state of your infrastructure. 
 
@@ -221,7 +230,101 @@ Terraform sources their providers and modules from the Terraform Registry which 
 
  `.terraform.tfstate.backup` is the previous state file state. 
 
- ### Terraform Directory
+ #### Terraform Directory
 
  `.terraform` directory contains binaries of terraform providers. 
+
+
+## Creating an S3 Bucket with Terraform
+
+In order to create a bucket in S3 first we would need to add AWS as a provider in `main.tf`
+
+You will grab the provider code that you will need from the terraform registry
+
+[AWS Provider](https://registry.terraform.io/providers/hashicorp/aws/latest)
+
+Terraform will not allow you to add two providers so will have to modify the code from: 
+
+```
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "5.44.0"
+    }
+  }
+}
+
+provider "aws" {
+  # Configuration options
+}
+```
+
+to 
+
+```
+    aws = {
+      source = "hashicorp/aws"
+      version = "5.44.0"
+    }
+  }
+}
+
+provider "aws" {
+  # Configuration options
+}
+```
+
+Placing the code underneath the Random Providers that we already installed. 
+
+```
+terraform {
+  required_providers {
+    random = {
+      source = "hashicorp/random"
+      version = "3.6.0"
+    }    
+    aws = {
+      source = "hashicorp/aws"
+      version = "5.44.0"
+    }
+  }
+}
+
+provider "aws" {
+  # Configuration options
+}
+  
+
+  
+provider "random" {
+  # Configuration options
+}
+```
+
+When creating an S3 bucket inside of terraform, we used the random provider mentioned above in order to create the S3 bucket name for us. 
+
+When you will need to modify the code to generate a proper bucket name for S3. 
+
+[Bucket Name Rules](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html)
+
+The code will first look like this when grabbing it from the Terraform registry
+
+```
+resource "random_string" "random" {
+  length           = 16
+  special          = true
+  override_special = "/@£$"
+}
+```
+Based on the naming rules of the S3 bucket you will want the code to mimic the follow:
+
+```
+resource "random_string" "bucket_name" {
+  lower = true
+  upper =  false
+  length   = 16
+  special  = false
+}
+```
 
