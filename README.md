@@ -336,3 +336,47 @@ What you will want to do is create a project space like so:
 
 ![Terraform Projects](<Terraform Cloud New Project-1.png>)
 
+Then you will need to create a new workspace
+
+![Terraform New Workspace](https://github.com/Organic-Moonlight/terraform-beginner-bootcamp-2023/assets/126846976/4d847489-1c2d-48aa-8722-ce6323417c05)
+
+Since this is a small project you will want to use CLI-driven runs 
+
+![Terraform CLI-Driven Runs](https://github.com/Organic-Moonlight/terraform-beginner-bootcamp-2023/assets/126846976/1bdf11b1-6d0b-4c5a-9615-a056d768c513)
+
+Now we should be following the prompts provided by Terraform: 
+
+You will first want to implement this code in the `main.tf`
+
+```
+  cloud {
+    organization = "your-organization"
+
+    workspaces {
+      name = "Your-Workspace"
+    }
+  }
+```
+
+Once this code is implemented then you will want to run the following comands: 
+
+`terraform login` what this will do is give us access to the terraform cloud in the terminal. 
+
+Once you are inside you will press 'P' so that you will be able to get your terraform token. 
+
+Ctrl+click will lead you to another tab that will give you your token
+
+![Terraform Token](https://github.com/Organic-Moonlight/terraform-beginner-bootcamp-2023/assets/126846976/81a3e935-7952-4f72-a171-55d2988799bd)
+
+Once you have copied the token, go back into the terminal and press 'q' to this will take you out of the terraform cloud and from there you can paste the token. 
+
+Once the token in pasted, you will connected to your workspace. 
+
+Run `terrafrom init` to initialize the workspace. 
+
+Run `terraform apply` to start the first run for this workspace. 
+
+
+
+
+
