@@ -376,7 +376,6 @@ Run `terrafrom init` to initialize the workspace.
 
 Run `terraform apply` to start the first run for this workspace. 
 
+We create a bash script in the bin file so that when we lauch our work space, `terraform login` will be automated. 
 
-
-
-
+[bin/generate_tfrc_credentials](bin/generate_tfrc_credentials)
