@@ -328,3 +328,11 @@ resource "random_string" "bucket_name" {
 }
 ```
 
+## Terraform Cloud
+
+To start, make sure that you have a login for Terraform Cloud. 
+
+What you will want to do is create a project space like so: 
+
+![Terraform Projects](<Terraform Cloud New Project-1.png>)
+
