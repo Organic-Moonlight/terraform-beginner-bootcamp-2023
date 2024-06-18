@@ -76,3 +76,46 @@ This is the default file to load in the terraform variable in blunk
   If someone goes and deletes or modifies cloud resources manually through CLickOps. 
 
   If we run the Terraform Plan, it is with an attempt to put our infrastructure back into the expected state fixing Configuration Drift. 
+
+  ### Fix using Terraform Refresh 
+
+  ```sh
+  terraform apply -refresh-only -auto-approve
+  ```
+
+  ## Terraform Modules
+
+  ### Terraform Module Structure
+
+  It is recommended to place modules `modules` directory when locally developing modules but you can name it whatever you like. 
+
+  ### Passing input variables
+
+  We can pass input variables to our Module. 
+  The module has to declare the terraform variables in its own variables.tf
+
+  ```tf
+    module "terrahouse_aws" {
+  source = "./modules/terrahouse_aws"
+  user_uuid = vars.user_uuid
+  bucket_name = var.bucket_name
+}
+```
+
+  ### Modules Sources
+
+
+
+  Using the source we can import the module from various places eg:
+   - locally
+   - Github
+   - Terraform Registry
+
+
+  ```tf
+  module "terrahouse_aws" {
+  source = "./modules/terrahouse_aws"
+}
+
+
+[Module Sources](https://developer.hashicorp.com/terraform/language/modules/sources)
