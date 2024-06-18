@@ -1,10 +1,15 @@
+terraform {
+  #cloud {
+  #  organization = "spaceships-moonlights"
 
-
-resource "aws_s3_bucket" "website_bucket" {
-  bucket = var.bucket_name
-
-  tags = {
-    UserUuid  = "vars.user_uuid"
+  #  workspaces {
+  #    name = "Terra-house-1"
+  #  }
+  #
   }
 
+module "terrahouse_aws" {
+  source = "./modules/terrahouse_aws"
+  user_uuid = var.user_uuid
+  bucket_name = var.bucket_name
 }
