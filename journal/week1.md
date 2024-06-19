@@ -119,3 +119,40 @@ This is the default file to load in the terraform variable in blunk
 
 
 [Module Sources](https://developer.hashicorp.com/terraform/language/modules/sources)
+
+
+## Considerations when using ChatGPT to write Terrafrom
+
+LLMs such as ChatGPT may not be trained on the latest documentation or information about Terraform. 
+
+It may likely produce older examples that could be deprecated. Often affecting providers. 
+
+## Working with Files in Terraform
+
+### File Exist Function
+
+This is a built-in terraform to check the existence of the file. 
+
+```tf
+condition = fileexists(var.error_html_filepath)
+```
+
+### filemd5
+
+[Terraform filemd5](https://developer.hashicorp.com/terraform/language/functions/filemd5)
+
+### Path Variable
+
+In Terraform there is a special variable called `path` that allows us to reference local paths:
+ - path.module = get the path for the current module
+ - path.root = get the path for the root module
+
+[Special Path Variable](https://developer.hashicorp.com/terraform/language/expressions/references)
+
+```
+resource "aws_s3_object" "index_html" {
+  bucket = aws_s3_bucket.website_bucket.bucket
+  key    = "index.html"
+  source = "${path.root}/public/index.html"
+}
+```
