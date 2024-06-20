@@ -35,3 +35,13 @@ variable "error_html_filepath" {
   }
 }
 
+
+variable "content_version" {
+  description = "The content version for the resource"
+  type        = number
+
+  validation {
+    condition     = var.content_version >= 1 && floor(var.content_version) == var.content_version
+    error_message = "The content_version value must be a positive integer starting from 1."
+  }
+}
