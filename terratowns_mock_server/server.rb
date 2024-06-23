@@ -234,7 +234,7 @@ class TerraTownsMockServer < Sinatra::Base
     # delete from mock database
     uuid = $home[:uuid]
     $home = {}
-    { message: "House deleted successfully" }.to_json
+    { uuid: uuid }.to_json
   end
 end
 
