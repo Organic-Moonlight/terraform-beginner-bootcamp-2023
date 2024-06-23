@@ -29,6 +29,7 @@ class Home
   attr_accessor :town, :name, :description, :domain_name, :content_version
 
   validates :town, presence: true, inclusion: {in: [
+    'cooker-cove'
   ]}
   # visible to all users
   validates :name, presence: true
