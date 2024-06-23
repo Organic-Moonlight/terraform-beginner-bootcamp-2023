@@ -29,6 +29,11 @@ class Home
   attr_accessor :town, :name, :description, :domain_name, :content_version
 
   validates :town, presence: true, inclusion: {in: [
+    'cooker-cove'
+    'melomanic-mansion'
+    'video-valley'
+    'the-nomad-pad'
+    'gamers-grotto'
   ]}
   # visible to all users
   validates :name, presence: true
@@ -233,7 +238,7 @@ class TerraTownsMockServer < Sinatra::Base
     # delete from mock database
     uuid = $home[:uuid]
     $home = {}
-    { message: "House deleted successfully" }.to_json
+    { uuid: uuid }.to_json
   end
 end
 
