@@ -30,10 +30,6 @@ class Home
 
   validates :town, presence: true, inclusion: {in: [
     'cooker-cove'
-    'melomanic-mansion'
-    'video-valley'
-    'the-nomad-pad'
-    'gamers-grotto'
   ]}
   # visible to all users
   validates :name, presence: true

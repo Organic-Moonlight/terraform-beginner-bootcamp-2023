@@ -1,8 +1,8 @@
 terraform {
     required_providers {
-    terratowns = {
-      source = "local.providers/local/terratowns"
-      version = "1.0.0"
+      terratowns = {
+        source = "local.providers/local/terratowns"
+        version = "1.0.0"
     }
   }
   #cloud {
@@ -15,7 +15,7 @@ terraform {
   }
 
 provider "terratowns" {
-  endpoint = "http://localhost:4567"
+  endpoint = "http://localhost:4567/api"
   user_uuid = "e328f4ab-b99f-421c-84c9-4ccea042c7d1" 
   token = "9b49b3fb-b8e9-483c-b703-97ba88eef8e0"
 }
@@ -29,3 +29,15 @@ provider "terratowns" {
 #   content_version = var.content_version
 #   assets_path = var.assets_path
 # }
+
+resource "terratowns_home" "home" {
+  name        = "Why kungfu kenny is the goat of rap!!!"
+  description = <<DESCRIPTION
+Kungfu Kenny aka Kendrick Lamar is the only rapper to ever win the pulitzer prize.
+He was recently in a rap beef with Drake.
+He won that rap beef and now he put the WestCoast back on the map when it comes to the music scene.
+DESCRIPTION
+  domain_name = "3dghsdwsa.cloudfront.net"
+  town        = "cooker-cove"
+  content_version = "1"
+}
